@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Model\User;
-use App\Model\Admin;
-use App\Model\Student;
-use App\Model\Parent;
+use App\Models\User;
+use App\Models\Admin;
+use App\Models\Student;
+use App\Models\Guardian;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -42,7 +42,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->middleware('guest:man');
+        $this->middleware('guest:stf');
         $this->middleware('guest:stn');
         $this->middleware('guest:prnt');
     }
@@ -57,7 +57,7 @@ class RegisterController extends Controller
         return view('auth.register', ['url' => 'student']);
     }
 
-    public function showStudentRegisterForm()
+    public function showParentRegisterForm()
     {
         return view('auth.register', ['url' => 'parent']);
     }
@@ -87,6 +87,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'username' => 'user'.$data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
@@ -117,8 +118,8 @@ class RegisterController extends Controller
     protected function createParent(Request $request)
     {
         $this->validator($request->all())->validate();
-        $parent = Admin::create([
-            'name' => $request['name'],
+        $parent = Guardian::create([
+            'fullname' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);

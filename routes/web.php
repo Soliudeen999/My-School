@@ -12,7 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('homepage.pages.notice');
+});
+
+Route::get('/notice-board', function () {
+    return view('homepage.pages.notice');
 });
 
 Auth::routes();
@@ -34,4 +38,4 @@ Route::post('/register/student', 'Auth\RegisterController@createStudent');
 
 Route::view('/home', 'home')->middleware('auth');
 Route::view('/admin', 'admin');
-Route::view('/writer', 'writer');
+Route::view('/parent', 'parent');

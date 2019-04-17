@@ -94,7 +94,7 @@ return [
 
         'parents' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Parent::class,
+            'model' => App\Models\Guardian::class,
         ],
 
         'students' => [

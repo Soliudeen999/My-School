@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Parent extends Authenticatable
+class Guardian extends Authenticatable
 {
-    use Notifiable;
+   use Notifiable;
 
     protected $guard = 'prnt';
 
