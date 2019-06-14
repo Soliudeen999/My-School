@@ -18,4 +18,21 @@ class Student extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function myParental()
+    {
+    	return $this->belongsToMany(Guardian::class);
+    }
+    public function guardian(){
+        return $this->belongsTo(Guardian::class);
+    }
+
+    // public function guardians(){
+    //     return $this->hasOne('App\Models\Guardian');
+    // }
+
+    public function messages()
+    {
+    	return $this->belongsToMany('App\Models\Message');
+    }
 }

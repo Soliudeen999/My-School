@@ -19,6 +19,8 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('splash_assets/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -49,7 +51,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Logout') }}   
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -66,5 +68,8 @@
                 @yield('content')
             </main>
         </div>
+        <script type="text/javascript" src="{{ asset('splash_assets/js/tether.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('splash_assets/js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('splash_assets/js/bootstrap.min.js') }}"></script>
     </body>
     </html>

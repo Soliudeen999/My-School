@@ -70,12 +70,16 @@ class LoginController extends Controller
     public function studentLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
+            'email'   => 'required',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('stn')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
+        if 
+        (
+            Auth::guard('stn')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember')) || 
+            Auth::guard('stn')->attempt(['regNumber'=> $request->email, 'password' => $request->password], $request->get('remember'))
+        ) 
+        {
             return redirect()->intended('/student');
         }
         return back()->withInput($request->only('email', 'remember'));
@@ -94,7 +98,6 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('prnt')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
             return redirect()->intended('/parent');
         }
         return back()->withInput($request->only('email', 'remember'));
